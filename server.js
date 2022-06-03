@@ -42,16 +42,7 @@ const sign_in = (res, req) => {
         res.send('success')
     }
 }
-const registrar = () => {}
-
-
-
-
-app.get( '/', greeting )
-
-app.post( '/signin', sign_in )
-
-app.post( '/signup', ( res, req ) => {
+const registrar =  ( res, req ) => {
     const { firstname, email, password } = req.body
     data_base.push(
         {
@@ -60,13 +51,22 @@ app.post( '/signup', ( res, req ) => {
             password : password
         }
     )
-})
+}
+const home = () => {
+    console.log('i am going home, yayyy')
+}
+
+app.get( '/', greeting )
+
+app.post( '/signin', sign_in )
+
+app.post( '/signup', registrar )
+
+app.get('/home', home )
 
 
 app.listen( 8080, greeting )
 
+// /signup -->post
 // /signin --> post
-// /home --> post
-// /login --> post
-// 
-// 
+// /home --> get
